@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+              <!---intro to my logo-->
+    <header>
+        <nav>
+            <h1 class="logo">BHAN GATDET</h1>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    <!--Hero section-->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-image">
+                    <img src="./bhan.jpg" alt="profile image" class="animated-profile">
+                </div>
+                <div class="hero-text">
+                    <h2>Hello, I'm Bhan Gatdet</h2>
+                    <p class="typewriter">A Web Developer passionate about creating interactive, modern, and dynamic websites.</p>
+                    <a href="#projects" class="btn">View My Work</a>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <!-- ABOUT -->
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <p>
+                I am a passionate developer who loves building clean, responsive, and user-friendly websites.
+                I specialize in front-end development with experience in modern technologies.
+            </p>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="section">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project">
+                    <h3>Portfolio Website</h3>
+                    <p>A responsive personal portfolio website showcasing my skills in HTML, CSS, and JavaScript with modern design principles.</p>
+                </div>
+                <div class="project">
+                    <h3>Responsive Table</h3>
+                    <p>An HTML table with CSS styling demonstrating clean data presentation and mobile responsiveness.</p>
+                </div>
+                <div class="project">
+                    <h3>Web Projects</h3>
+                    <p>Various web development projects demonstrating front-end development expertise and modern web standards.</p>
+                </div>
+            
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="section">
+            <h2>Skills</h2>
+            <ul class="skill-list">
+                <li>HTML & CSS</li>
+                <li>JavaScript</li>
+              
+            </ul>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section contact">
+            <h2>Contact Me</h2>
+            <form id="contactForm">
+                <input type="text" placeholder="Your Name" required />
+                <input type="email" placeholder="Email Address" required />
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+                 <p>For more information, <a href="mailto:bhangatdet00@gmail.com">reach me out</a></p>
+
+            </form>
+        </section>
+        
+            <div class="social-links">
+    <a href="https://www.facebook.com/therealpavel" class="social facebook">
+        <box-icon type='logo' name='facebook-circle'></box-icon>
+        Facebook
+    </a>
+
+    <a href="https://www.instagram.com/pavel_nedved4" class="social instagram">
+        <box-icon type='logo' name='instagram'></box-icon>
+        Instagram
+    </a>
+
+    <a href="https://wa.me/0782001275" class="social whatsapp">
+        <box-icon type='logo' name='whatsapp'></box-icon>
+        WhatsApp
+    </a>
+</div>
+    </main>
+  
+
+    <footer>
+        <p>© 2025 BHAN GATDET — All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Contact form handler
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            alert("Thank you! Your message has been sent.");
+        });
+
+        // Hero image animation handled via CSS (GPU-accelerated)
+
+        // Typewriter effect for hero text
+        const typewriter = document.querySelector('.typewriter');
+        if (typewriter) {
+            const text = typewriter.textContent;
+            typewriter.textContent = '';
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    typewriter.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 50);
+                }
+            }
+            type();
+        }
+    </script>
+
+
+
+
+
+
+</body>
+
