@@ -9,9 +9,7 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
-    background: yellow !important;
-}
+
 
 body {
     background: linear-gradient(to bottom, #f8f9fa, #ffffff);
