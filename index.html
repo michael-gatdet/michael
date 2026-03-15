@@ -631,22 +631,53 @@
             return new bootstrap.Tooltip(tooltipTriggerEl);
         });
 
-        // Contact form handler
+        // Contact form handler — sends data to Formspree. Replace YOUR_FORM_ID with your Formspree ID.
         document.getElementById("contactForm").addEventListener("submit", function (e) {
             e.preventDefault();
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const subject = document.getElementById("subject").value;
-            const message = document.getElementById("message").value;
-            
-            // Show success alert
-            const alertDiv = document.createElement("div");
-            alertDiv.className = "alert alert-success alert-dismissible fade show";
-            alertDiv.innerHTML = `<strong>Success!</strong> Your message has been sent. Thank you for reaching out, ${name}!<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
-            document.getElementById("contact").prepend(alertDiv);
-            
-            // Reset form
-            this.reset();
+            const form = this;
+            const data = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                subject: document.getElementById("subject").value,
+                message: document.getElementById("message").value
+            };
+
+            const endpoint = "https://formspree.io/f/YOUR_FORM_ID"; // <-- replace YOUR_FORM_ID
+
+            fetch(endpoint, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                if (response.ok) {
+                    const alertDiv = document.createElement("div");
+                    alertDiv.className = "alert alert-success alert-dismissible fade show";
+                    alertDiv.innerHTML = `<strong>Success!</strong> Your message has been sent. Thank you, ${data.name}!<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+                    document.getElementById("contact").prepend(alertDiv);
+                    form.reset();
+                } else {
+                    response.json().then(err => {
+                        const alertDiv = document.createElement("div");
+                        alertDiv.className = "alert alert-danger alert-dismissible fade show";
+                        alertDiv.innerHTML = `<strong>Error:</strong> Unable to send message. Please try again later.<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+                        document.getElementById("contact").prepend(alertDiv);
+                    }).catch(() => {
+                        const alertDiv = document.createElement("div");
+                        alertDiv.className = "alert alert-danger alert-dismissible fade show";
+                        alertDiv.innerHTML = `<strong>Error:</strong> Unable to send message. Please try again later.<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+                        document.getElementById("contact").prepend(alertDiv);
+                    });
+                }
+            }).catch(() => {
+                const alertDiv = document.createElement("div");
+                alertDiv.className = "alert alert-danger alert-dismissible fade show";
+                alertDiv.innerHTML = `<strong>Error:</strong> Network error. Please check your connection and try again.<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+                document.getElementById("contact").prepend(alertDiv);
+            });
+
         });
 
         // Typewriter effect for hero text
